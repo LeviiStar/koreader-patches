@@ -37,7 +37,11 @@ _G.require = function(modname)
                             local items = orig_getMenuItems(ctx_menu)
                             if type(items) == "table" then
                                 table.insert(items, {
-                                    text = "Bento Grid Width",
+                                    -- THIS IS THE MAGIC: Dynamic text label that updates live!
+                                    text_func = function()
+                                        local cur_val = _G.G_reader_settings:readSetting("simpleui_bento_width_" .. id) or 100
+                                        return "Bento Grid Width (" .. cur_val .. "%)"
+                                    end,
                                     keep_menu_open = true,
                                     separator = true,
                                     callback = function()

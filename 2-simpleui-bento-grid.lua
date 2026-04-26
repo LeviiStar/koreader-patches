@@ -46,7 +46,7 @@ _G.require = function(modname)
             if not inst or inst._bento_patched then return end
 
             -- 1. Context Menu Injection
-            -- Iterates through registered modules to add a "Grid Column Width" slider to their long-press menus.
+            -- Iterates through registered modules to add a "Bento Grid Column Width" slider to their long-press menus.
             local Registry = original_require("desktop_modules/moduleregistry")
             if Registry and Registry.list and not Registry._bento_menu_patched then
                 for _, mod in ipairs(Registry.list()) do
@@ -59,7 +59,7 @@ _G.require = function(modname)
                                 table.insert(items, {
                                     text_func = function()
                                         local cur_val = _G.G_reader_settings:readSetting("simpleui_bento_width_" .. mod.id) or 100
-                                        return "Grid Column Width (" .. cur_val .. "%)"
+                                        return "Bento Grid Column Width (" .. cur_val .. "%)"
                                     end,
                                     keep_menu_open = true,
                                     separator = true,
@@ -69,7 +69,7 @@ _G.require = function(modname)
                                         local cur_val = _G.G_reader_settings:readSetting("simpleui_bento_width_" .. mod.id) or 100
                                         
                                         UIManager:show(SpinWidget:new{
-                                            title_text    = "Grid Column Width",
+                                            title_text    = "Bento Grid Column Width",
                                             info_text     = "Set the layout width for the Bento Grid.\n(e.g., 50 = 50% width, 100 = full row)",
                                             value         = cur_val,
                                             value_min     = 20,
